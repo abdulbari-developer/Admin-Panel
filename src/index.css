@@ -276,6 +276,7 @@ button:focus-visible {
 .image {
   text-align: center;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .image img {
@@ -459,4 +460,75 @@ hr {
   .orderForm button {
     width: 100%;
   }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* background dark */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* upar layer pe */
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background-color: white;
+  width: 70vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+  animation: slideUp 0.4s ease;
+  position: relative;
+}
+
+.modal-content img {
+  width: 50%;
+  height: 85%;
+  object-fit: cover;
+}
+
+.modal-details {
+  width: 50%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: red;
+}
+.modal-r{
+     margin-left: 50px;
+}
+.modal-r h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 105px;
+}
+.modal-r p {
+  font-size: 16px;
+  margin-bottom: 50px;
+  line-height: 1.5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

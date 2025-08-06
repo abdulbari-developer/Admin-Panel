@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Product_List from './Product_List'
+import ProductModal from './ProductModal'
 const Product = () => {
   const [selectCategory, setselectCategory] = useState('')
   const [product, setproduct] = useState(Product_List)
@@ -11,7 +12,9 @@ const Product = () => {
   const [category, setcategory] = useState('')
   const [image,setimage] =useState('')
   const [isUpdate, setisUpdate] = useState(false)
+  const [selectedProduct, setselectedProduct] = useState(null)
   let productCategory = ['Mobiles', 'Laptops', 'Chargers', 'Speakers', 'Gaming Console' ];
+  
 
   const addProduct = (e)=>{
     let error = ''
@@ -101,6 +104,8 @@ const Product = () => {
     }
   }
   const filterProduct = selectCategory?product.filter(item => item.category === selectCategory):product;
+  const openModal = (product) => setselectedProduct(product)
+  const closeModal = ()=> setselectedProduct(null)
   return (
     <div className='products'>
       <h1 className="user-h">Products</h1>
@@ -136,9 +141,9 @@ const Product = () => {
         <div className="product-cards">
          {
           filterProduct.map( item => (
-          <div className="card" key={item.id}>
+          <div className="card" key={item.id} >
             <h6 className='card-id'>{item.id}</h6>
-            <div className="image">
+            <div className="image" onClick={()=>openModal(item)}>
               <img src={item.image} alt="image"/>
             </div>
             <h2 className='card-h'>{item.name}</h2>
@@ -153,6 +158,7 @@ const Product = () => {
         ))}
         </div>
       </div>
+      <ProductModal product={selectedProduct} onClose={closeModal} />
     </div>
   )
 }
